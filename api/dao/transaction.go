@@ -21,7 +21,8 @@ func InsertTransaction(transaction *models.Transaction) error {
 //GetTransactionAll Returns error and transaction if exist
 func GetTransactionAll() ([]models.Transaction, error) {
 	var transaction []models.Transaction
-	err := Db.Select(&transaction, "SELECT * FROM `transaction` ORDER BY id ASC")
+	err := Db.Select(&transaction, "SELECT t.*, p.name as 'product_name' FROM `transaction` as t LEFT JOIN `product` as p ON t.product_id = p.id ORDER BY id ASC")
+
 	if err != nil {
 		fmt.Errorf("Error getting transaction from database %v \n", err)
 		return transaction, err
