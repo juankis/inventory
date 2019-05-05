@@ -18,6 +18,7 @@ func Start() {
 	r.GET("/transaction/:id/", controllers.GetTransaction)
 	r.DELETE("/transaction/:id/", controllers.DeleteTransaction)
 	r.PUT("/transaction/:id/", controllers.PutTransaction)
+	r.POST("/confirm", controllers.ConfirmTransaction)
 
 	r.POST("/product", controllers.InsertProduct)
 	r.GET("/product", controllers.GetProductAll)

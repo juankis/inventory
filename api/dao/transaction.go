@@ -43,7 +43,7 @@ func GetTransaction(transaction *models.Transaction) error {
 //UpdateTransaction update transaction
 func UpdateTransaction(transaction *models.Transaction) error {
 	fmt.Printf("update transaction : %+v", transaction)
-	_, err := Db.NamedExec(`UPDATE transaction set quantity = :quantity,
+	_, err := Db.NamedExec(`UPDATE transaction SET quantity = :quantity,
 											movement = :movement,
 											user_creator= :user_creator,
 											user_confirm = :user_confirm,
@@ -62,6 +62,19 @@ func DeleteTransaction(transaction *models.Transaction) error {
 	_, err := Db.Exec("DELETE FROM transaction WHERE id = ?", transaction.ID)
 	if err != nil {
 		fmt.Errorf("Error deleting transaction from database", err, nil)
+		return err
+	}
+	return nil
+}
+
+//ConfirmTransaction update transaction
+func ConfirmTransaction(transaction *models.ConfirmTransaction) error {
+	fmt.Printf("update transaction : %+v", transaction)
+	_, err := Db.Exec(`UPDATE transaction SET user_confirm = ? ,
+											updated_at = CURRENT_TIMESTAMP
+											where id = ?`, transaction.ConfirmUserID, transaction.TransactionID)
+	if err != nil {
+		fmt.Errorf("Error updating transaction in database", err)
 		return err
 	}
 	return nil

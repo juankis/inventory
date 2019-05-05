@@ -97,3 +97,19 @@ func GetTransaction(c *gin.Context) {
 	c.JSON(200, models.Response{Data: transaction})
 	return
 }
+
+func ConfirmTransaction(c *gin.Context) {
+	var confirm models.ConfirmTransaction
+	err := c.ShouldBindJSON(&confirm)
+	if err != nil {
+		utils.InvalidJSON(c, err)
+		return
+	}
+	err = dao.ConfirmTransaction(&confirm)
+	if err != nil {
+		utils.InvalidJSON(c, err)
+		return
+	}
+	c.JSON(201, nil)
+	return
+}

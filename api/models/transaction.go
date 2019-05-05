@@ -24,3 +24,10 @@ type Response struct {
 type ResponseRegitries struct {
 	Data []Transaction `json:"data"`
 }
+
+//ConfirmTransaction struct
+type ConfirmTransaction struct {
+	TransactionID int  `json:"transaction_id"`
+	Confirm       bool `json:"confirm"`
+	ConfirmUserID int  `json:"confirm_user_id"`
+}
