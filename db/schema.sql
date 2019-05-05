@@ -1,4 +1,4 @@
-CREATE TABLE `watchdog`.`transaction` (
+CREATE TABLE `inventory`.`transaction` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `quantity` INT NOT NULL,
   `movement` INT NOT NULL DEFAULT 1,
@@ -7,4 +7,9 @@ CREATE TABLE `watchdog`.`transaction` (
   `product_id` INT NOT NULL,
   `created_at` TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP,
   `updated_at` TIMESTAMP NULL DEFAULT,
+  PRIMARY KEY (`id`));
+
+CREATE TABLE `inventory`.`product` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `name` VARCHAR(200) NULL,
   PRIMARY KEY (`id`));
