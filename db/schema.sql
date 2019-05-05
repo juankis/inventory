@@ -13,3 +13,9 @@ CREATE TABLE `inventory`.`product` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `name` VARCHAR(200) NULL,
   PRIMARY KEY (`id`));
+
+
+CREATE TABLE `inventory`.`user` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `name` VARCHAR(200) NULL,
+  PRIMARY KEY (`id`));

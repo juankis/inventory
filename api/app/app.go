@@ -25,5 +25,11 @@ func Start() {
 	r.DELETE("/product/:id/", controllers.DeleteProduct)
 	r.PUT("/product/:id/", controllers.PutProduct)
 
+	r.POST("/user", controllers.InsertUser)
+	r.GET("/user", controllers.GetUserAll)
+	r.GET("/user/:id/", controllers.GetUser)
+	r.DELETE("/user/:id/", controllers.DeleteUser)
+	r.PUT("/user/:id/", controllers.PutUser)
+
 	r.Run(":8080") // listen and serve on 0.0.0.0:8080
 }
