@@ -35,6 +35,8 @@ func Start() {
 	r.PUT("/user/:id/", controllers.PutUser)
 
 	//front
+	//r.LoadHTMLFiles("templates/js/*")
+	r.Static("/assets", "./assets")
 	r.LoadHTMLGlob("templates/**/*")
 	r.GET("/transactions", func(c *gin.Context) {
 		c.HTML(http.StatusOK, "listTransactions.tmpl", nil)
