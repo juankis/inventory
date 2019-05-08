@@ -1,6 +1,8 @@
 package app
 
 import (
+	"net/http"
+
 	"github.com/gin-gonic/gin"
 	"github.com/juankis/inventory/api/controllers"
 )
@@ -32,5 +34,28 @@ func Start() {
 	r.DELETE("/user/:id/", controllers.DeleteUser)
 	r.PUT("/user/:id/", controllers.PutUser)
 
+	//front
+	r.LoadHTMLGlob("templates/**/*")
+	r.GET("/transactions", func(c *gin.Context) {
+		c.HTML(http.StatusOK, "listTransactions.tmpl", nil)
+	})
+	r.GET("/transactions/create", func(c *gin.Context) {
+		c.HTML(http.StatusOK, "createTransaction.tmpl", nil)
+	})
+	r.GET("/users", func(c *gin.Context) {
+		c.HTML(http.StatusOK, "listUsers.tmpl", nil)
+	})
+	r.GET("/users/create", func(c *gin.Context) {
+		c.HTML(http.StatusOK, "createUser.tmpl", nil)
+	})
+	r.GET("/login", func(c *gin.Context) {
+		c.HTML(http.StatusOK, "login.tmpl", nil)
+	})
+	r.GET("/products", func(c *gin.Context) {
+		c.HTML(http.StatusOK, "listProducts.tmpl", nil)
+	})
+	r.GET("/products/create", func(c *gin.Context) {
+		c.HTML(http.StatusOK, "createProduct.tmpl", nil)
+	})
 	r.Run(":8080") // listen and serve on 0.0.0.0:8080
 }
