@@ -28,11 +28,19 @@ func Start() {
 	r.DELETE("/product/:id/", controllers.DeleteProduct)
 	r.PUT("/product/:id/", controllers.PutProduct)
 
+	r.POST("/store", controllers.InsertStore)
+	r.GET("/store", controllers.GetStoreAll)
+	r.GET("/store/:id/", controllers.GetStore)
+	r.DELETE("/store/:id/", controllers.DeleteStore)
+	r.PUT("/store/:id/", controllers.PutStore)
+
 	r.POST("/user", controllers.InsertUser)
 	r.GET("/user", controllers.GetUserAll)
 	r.GET("/user/:id/", controllers.GetUser)
 	r.DELETE("/user/:id/", controllers.DeleteUser)
 	r.PUT("/user/:id/", controllers.PutUser)
+
+	r.POST("/loginn", controllers.Login)
 
 	//front
 	//r.LoadHTMLFiles("templates/js/*")
@@ -53,11 +61,20 @@ func Start() {
 	r.GET("/login", func(c *gin.Context) {
 		c.HTML(http.StatusOK, "login.tmpl", nil)
 	})
+	r.GET("/", func(c *gin.Context) {
+		c.HTML(http.StatusOK, "login.tmpl", nil)
+	})
 	r.GET("/products", func(c *gin.Context) {
 		c.HTML(http.StatusOK, "listProducts.tmpl", nil)
 	})
 	r.GET("/products/create", func(c *gin.Context) {
 		c.HTML(http.StatusOK, "createProduct.tmpl", nil)
+	})
+	r.GET("/stores", func(c *gin.Context) {
+		c.HTML(http.StatusOK, "listStores.tmpl", nil)
+	})
+	r.GET("/stores/create", func(c *gin.Context) {
+		c.HTML(http.StatusOK, "createStore.tmpl", nil)
 	})
 	r.Run(":8080") // listen and serve on 0.0.0.0:8080
 }

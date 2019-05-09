@@ -8,7 +8,7 @@ import (
 
 //InsertUser insert
 func InsertUser(user *models.User) error {
-	res, err := Db.NamedExec(`INSERT INTO user (name) VALUES (:name)`, &user)
+	res, err := Db.NamedExec(`INSERT INTO user (name, user, password) VALUES (:name, :user, :password)`, &user)
 	if err != nil {
 		fmt.Errorf(fmt.Sprintf("Error inserting user to the database, user: %v\n", user), err, nil)
 		return err
@@ -42,7 +42,9 @@ func GetUser(user *models.User) error {
 //UpdateUser update user
 func UpdateUser(user *models.User) error {
 	fmt.Printf("update user : %+v", user)
-	_, err := Db.NamedExec(`UPDATE user set name = :name
+	_, err := Db.NamedExec(`UPDATE user set name = :name,
+											user = :user,
+											password = :password
 											where id = :id`, &user)
 	if err != nil {
 		fmt.Errorf("Error updating user in database", err)
@@ -59,4 +61,10 @@ func DeleteUser(user *models.User) error {
 		return err
 	}
 	return nil
+}
+
+//Login insert
+func Login(user *models.LoginRequest) bool {
+	query := fmt.Sprintf("SELECT * FROM `user` where user = '%s' and password = '%s' limit 1", user.User, user.Password)
+	return RowExists(query)
 }

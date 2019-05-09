@@ -1,6 +1,7 @@
 package dao
 
 import (
+	"database/sql"
 	"fmt"
 
 	//_ this library is necesary to connet with database
@@ -31,4 +32,20 @@ func Database() *sqlx.DB {
 		fmt.Println(fmt.Sprintf(`[event:db_connection_error][error:"%s"]`, err.Error()))
 	}
 	return db
+}
+
+//RowExists function to check if exist result from some query
+func RowExists(query string, args ...interface{}) bool {
+	var exists bool
+	query = fmt.Sprintf("SELECT exists (%s)", query)
+	err := Db.QueryRow(query, args...).Scan(&exists)
+	if err != nil && err != sql.ErrNoRows {
+		fmt.Errorf("error checking if row exists '%s' %v", args, err)
+	}
+	return exists
+}
+
+//CheckIfExistValue func to check if exist some value in x column and table x
+func CheckIfExistValue(column string, value string, table string) bool {
+	return RowExists("SELECT "+column+" FROM `"+table+"` WHERE "+column+"= ?", value)
 }
