@@ -40,7 +40,7 @@ func Start() {
 	r.DELETE("/user/:id/", controllers.DeleteUser)
 	r.PUT("/user/:id/", controllers.PutUser)
 
-	r.POST("/loginn", controllers.Login)
+	r.POST("/login", controllers.Login)
 
 	//front
 	//r.LoadHTMLFiles("templates/js/*")

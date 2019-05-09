@@ -1,10 +1,11 @@
-function changeDivContent() { 
-    document.getElementById("nav").innerHTML = "<nav class='nav nav-pills nav-justified'>"+
-    "<a class='nav-item nav-link' href='http://localhost:8080/transactions'><ion-icon size='large' name='paper-plane'></ion-icon></a>"+
-    "<a class='nav-item nav-link' href='http://localhost:8080/products'><ion-icon size='large' name='logo-buffer'></ion-icon></a>"+
-    "<a class='nav-item nav-link' href='http://localhost:8080/users'><ion-icon size='large' name='contacts'></ion-icon></a>"+
-    "<a class='nav-item nav-link' href='http://localhost:8080/stores'><ion-icon size='large' name='business'></ion-icon></a>"+
-"</nav>";
-};
 
-changeDivContent()
+function getFormData($form){
+    var unindexed_array = $form.serializeArray();
+    var indexed_array = {};
+
+    $.map(unindexed_array, function(n, i){
+        indexed_array[n["name"]] = n['value'];
+    });
+    console.log(indexed_array)
+    return JSON.stringify(indexed_array);
+}

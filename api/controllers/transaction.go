@@ -9,15 +9,20 @@ import (
 	"github.com/juankis/inventory/api/utils"
 )
 
+//InsertTransaction insertion
 func InsertTransaction(c *gin.Context) {
-	var reg models.Response
+	var reg models.TransactionRequest
 	err := c.ShouldBindJSON(&reg)
 	if err != nil {
 		utils.InvalidJSON(c, err)
 		return
 	}
-	transaction := reg.Data
-	err = dao.InsertTransaction(&transaction)
+	err, transaction := convertTransaction(reg)
+	if err != nil {
+		utils.InvalidJSON(c, err)
+		return
+	}
+	err = dao.InsertTransaction(transaction)
 	if err != nil {
 		utils.InvalidJSON(c, err)
 		return
@@ -98,6 +103,7 @@ func GetTransaction(c *gin.Context) {
 	return
 }
 
+//ConfirmTransaction confirm transaction
 func ConfirmTransaction(c *gin.Context) {
 	var confirm models.ConfirmTransaction
 	err := c.ShouldBindJSON(&confirm)
@@ -112,4 +118,24 @@ func ConfirmTransaction(c *gin.Context) {
 	}
 	c.JSON(201, nil)
 	return
+}
+
+func convertTransaction(req models.TransactionRequest) (error, *models.Transaction) {
+	mov, err := strconv.Atoi(req.Movement)
+	if err != nil {
+		return err, nil
+	}
+	prod, err := strconv.Atoi(req.ProductId)
+	if err != nil {
+		return err, nil
+	}
+	quant, err := strconv.Atoi(req.Quantity)
+	if err != nil {
+		return err, nil
+	}
+	user, err := strconv.Atoi(req.UserCreator)
+	if err != nil {
+		return err, nil
+	}
+	return nil, &models.Transaction{Movement: mov, ProductId: prod, Quantity: quant, UserCreator: &user}
 }

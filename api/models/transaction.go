@@ -3,9 +3,9 @@ package models
 //Transaction struct
 type Transaction struct {
 	ID              int     `json:"id,omitempty" db:"id"`
-	Quantity        int     `json:"quantity" db:"quantity" binding:"required"`
-	Movement        int     `json:"movement,omitempty" db:"movement" binding:"required"`
-	UserCreator     *int    `json:"user_creator" db:"user_creator" binding:"required"`
+	Quantity        int     `json:"quantity" db:"quantity" binding:"required,number"`
+	Movement        int     `json:"movement,omitempty" db:"movement" binding:"required,number"`
+	UserCreator     *int    `json:"user_creator" db:"user_creator" binding:"required,number"`
 	UserConfirm     *int    `json:"user_confirm" db:"user_confirm"`
 	UserCreatorName *string `json:"user_creator_name" db:"user_creator_name"`
 	UserConfirmName *string `json:"user_confirm_name" db:"user_confirm_name"`
@@ -30,4 +30,12 @@ type ConfirmTransaction struct {
 	TransactionID int  `json:"transaction_id"`
 	Confirm       bool `json:"confirm"`
 	ConfirmUserID int  `json:"confirm_user_id"`
+}
+
+//TransactionRequest struct
+type TransactionRequest struct {
+	Quantity    string `json:"quantity" binding:"required"`
+	Movement    string `json:"movement" binding:"required"`
+	UserCreator string `json:"user_creator" binding:"required"`
+	ProductId   string `json:"product_id" binding:"required"`
 }
