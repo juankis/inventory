@@ -21,7 +21,7 @@ func InsertProduct(product *models.Product) error {
 //GetProductAll Returns error and product if exist
 func GetProductAll() ([]models.Product, error) {
 	var product []models.Product
-	err := Db.Select(&product, "SELECT * FROM `product` ORDER BY id ASC")
+	err := Db.Select(&product, "SELECT name FROM `product` ORDER BY id ASC")
 	if err != nil {
 		fmt.Errorf("Error getting product from database %v \n", err)
 		return product, err

@@ -16,7 +16,7 @@ func Start() {
 		})
 	})
 	r.POST("/transaction", controllers.InsertTransaction)
-	r.GET("/transaction", controllers.GetTransactionAll)
+	r.GET("/transaction", controllers.GetTransactionsList)
 	r.GET("/transaction/:id/", controllers.GetTransaction)
 	r.DELETE("/transaction/:id/", controllers.DeleteTransaction)
 	r.PUT("/transaction/:id/", controllers.PutTransaction)

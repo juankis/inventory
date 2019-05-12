@@ -15,6 +15,14 @@ type Transaction struct {
 	UpdatedAt       string  `json:"updated_at,omitempty" db:"updated_at"`
 }
 
+//TransactionResponse struct
+type TransactionResponse struct {
+	Quantity string  `json:"quantity"`
+	Movement string  `json:"movement"`
+	Creator  *string `json:"user_creator_name"`
+	Product  *string `json:"product_name"`
+}
+
 //Response struct
 type Response struct {
 	Data Transaction `json:"data"`

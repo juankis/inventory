@@ -16,5 +16,42 @@ $(document).ready(function(){
                 console.log(xhr, resp, text);
             }
         })
-    });    
+    }); 
+
+    $('#dtBasicExample').DataTable({
+        "searching": false,
+        "bLengthChange": false
+    });
+   getTransactions()
 });
+
+function getTransactions(){
+    $.ajax({
+        url: 'http://localhost:8080/transaction',
+        contentType: "application/json",
+        type : "GET",
+        dataType : 'json',
+        success : function(result) {
+            console.log(result)
+            loadTransactions(result)
+        },
+        error: function(xhr, resp, text, data) {
+            console.log(xhr, resp, text);
+        }
+    })
+}
+
+function loadTransactions(transactions){
+    var datatable = $( '#dtBasicExample' ).DataTable();
+    var lista  = new Array()
+    datatable.clear()
+    jQuery.each(transactions, function(i, val) {
+        l = Object.values(val)
+        l.push("<button type='submit' class='btn btn-primary btn-sm btn-block'>Ok</button>")
+        lista.push(l)
+        console.log(lista)
+    });
+    datatable.rows.add(lista)
+    datatable.draw();
+    console.log(lista)  
+}

@@ -30,6 +30,18 @@ func GetTransactionAll() ([]models.Transaction, error) {
 	return transaction, nil
 }
 
+//GetTransactionsResponse Returns error and transaction if exist
+func GetTransactionsResponse() ([]models.TransactionResponse, error) {
+	var transaction []models.TransactionResponse
+	err := Db.Select(&transaction, "SELECT t.quantity, t.movement, p.name as `product`, u.name as `creator` FROM `transaction` as t LEFT JOIN `product` as p ON t.product_id = p.id LEFT JOIN `user` as u ON t.user_creator = u.id LEFT JOIN `user` as u2 ON t.user_confirm = u2.id  ORDER BY t.id ASC")
+
+	if err != nil {
+		fmt.Errorf("Error getting transaction from database %v \n", err)
+		return transaction, err
+	}
+	return transaction, nil
+}
+
 //GetTransaction Returns error and transaction if exist
 func GetTransaction(transaction *models.Transaction) error {
 	err := Db.Get(transaction, "SELECT * FROM `transaction` where id = ? limit 1", transaction.ID)

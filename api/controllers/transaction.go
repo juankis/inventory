@@ -139,3 +139,22 @@ func convertTransaction(req models.TransactionRequest) (error, *models.Transacti
 	}
 	return nil, &models.Transaction{Movement: mov, ProductId: prod, Quantity: quant, UserCreator: &user}
 }
+
+//GetTransactionsList get all registries
+func GetTransactionsList(c *gin.Context) {
+	transactions, err := dao.GetTransactionsResponse()
+	for i, e := range transactions {
+		switch e.Movement {
+		case "1":
+			transactions[i].Movement = "entrada"
+		case "2":
+			transactions[i].Movement = "salida"
+		}
+	}
+	if err != nil {
+		utils.CustomResponse(c, "getting transactions", err, 404)
+		return
+	}
+	c.JSON(200, transactions)
+	return
+}

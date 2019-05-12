@@ -29,7 +29,6 @@ func InsertUser(c *gin.Context) {
 
 //GetUserAll get all registries
 func GetUserAll(c *gin.Context) {
-	var users []models.User
 	users, err := dao.GetUserAll()
 	if err != nil {
 		utils.CustomResponse(c, "getting users", err, 404)

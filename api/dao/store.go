@@ -21,7 +21,7 @@ func InsertStore(store *models.Store) error {
 //GetStoreAll Returns error and store if exist
 func GetStoreAll() ([]models.Store, error) {
 	var store []models.Store
-	err := Db.Select(&store, "SELECT * FROM `store` ORDER BY id ASC")
+	err := Db.Select(&store, "SELECT name FROM `store` ORDER BY id ASC")
 	if err != nil {
 		fmt.Errorf("Error getting store from database %v \n", err)
 		return store, err

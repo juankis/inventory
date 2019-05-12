@@ -10,6 +10,12 @@ type User struct {
 	UpdatedAt string `json:"updated_at,omitempty" db:"updated_at"`
 }
 
+//UserResponse struct
+type UserResponse struct {
+	Name string `json:"name"`
+	User string `json:"user"`
+}
+
 //LoginRequest struct
 type LoginRequest struct {
 	User     string `json:"user" binding:"required" schema:"user"`
