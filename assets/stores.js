@@ -1,4 +1,7 @@
 $(document).ready(function(){
+    $("#submit_transaction").on('click', function(){
+        createTransaction()
+    });
     $('#stores').DataTable({
         "searching": false,
         "bLengthChange": false

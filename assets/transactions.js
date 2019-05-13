@@ -1,26 +1,13 @@
 $(document).ready(function(){
     $("#submit_transaction").on('click', function(){
-        console.log(getFormData($("#transaction")))
-        $.ajax({
-            url: 'http://localhost:8080/transaction',
-            contentType: "application/json",
-            type : "POST",
-            dataType : 'json',
-            data : getFormData($("#transaction")),
-            success : function(result) {
-                console.log(result)
-                window.location.href = 'http://localhost:8080/transactions'
-            },
-            error: function(xhr, resp, text, data) {
-                $("#messages").text("usuario no valido")
-                console.log(xhr, resp, text);
-            }
-        })
+        createTransaction()
     }); 
 
-    $('#dtBasicExample').DataTable({
+    $('#transactions').DataTable({
         "searching": false,
-        "bLengthChange": false
+        "bLengthChange": false,
+        "paging": false,
+        "ordering": false
     });
    getTransactions()
 });
@@ -42,7 +29,7 @@ function getTransactions(){
 }
 
 function loadTransactions(transactions){
-    var datatable = $( '#dtBasicExample' ).DataTable();
+    var datatable = $( '#transactions' ).DataTable();
     var lista  = new Array()
     datatable.clear()
     jQuery.each(transactions, function(i, val) {
@@ -54,4 +41,23 @@ function loadTransactions(transactions){
     datatable.rows.add(lista)
     datatable.draw();
     console.log(lista)  
+}
+
+function createTransaction(){
+    console.log(getFormData($("#transaction")))
+        $.ajax({
+            url: 'http://localhost:8080/transaction',
+            contentType: "application/json",
+            type : "POST",
+            dataType : 'json',
+            data : getFormData($("#transaction")),
+            success : function(result) {
+                console.log(result)
+                window.location.href = 'http://localhost:8080/transactions'
+            },
+            error: function(xhr, resp, text, data) {
+                $("#messages").text("usuario no valido")
+                console.log(xhr, resp, text);
+            }
+        })
 }
