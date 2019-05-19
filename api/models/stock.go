@@ -9,3 +9,9 @@ type Stock struct {
 	CreatedAt string `json:"created_at,omitempty" db:"created_at"`
 	UpdatedAt string `json:"updated_at,omitempty" db:"updated_at"`
 }
+
+//StockProduct struct
+type StockProduct struct {
+	ProductName string `json:"product_name" db:"product_name"`
+	Stock       int    `json:"stock" db:"stock"`
+}

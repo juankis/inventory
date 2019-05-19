@@ -95,3 +95,20 @@ func GetStore(c *gin.Context) {
 	c.JSON(200, store)
 	return
 }
+
+//GetStoreStock get all registries
+func GetStoreStock(c *gin.Context) {
+	id, err := strconv.Atoi(c.Params.ByName("id"))
+	if err != nil {
+		utils.InvalidURL(c, err)
+		return
+	}
+	var products []models.StockProduct
+	products, err = dao.GetProductsStock(id)
+	if err != nil {
+		utils.CustomResponse(c, "getting products stock", err, 404)
+		return
+	}
+	c.JSON(200, products)
+	return
+}

@@ -21,7 +21,7 @@ func InsertStore(store *models.Store) error {
 //GetStoreAll Returns error and store if exist
 func GetStoreAll() ([]models.Store, error) {
 	var store []models.Store
-	err := Db.Select(&store, "SELECT name FROM `store` ORDER BY id ASC")
+	err := Db.Select(&store, "SELECT id, name FROM `store` ORDER BY id ASC")
 	if err != nil {
 		fmt.Errorf("Error getting store from database %v \n", err)
 		return store, err
@@ -59,4 +59,15 @@ func DeleteStore(store *models.Store) error {
 		return err
 	}
 	return nil
+}
+
+//GetProductsStock Returns error and product if exist
+func GetProductsStock(id int) ([]models.StockProduct, error) {
+	var stockProduct []models.StockProduct
+	err := Db.Select(&stockProduct, "SELECT p.name as product_name, s.stock from stock s, product p where s.product_id = p.id and s.store_id = ?", id)
+	if err != nil {
+		fmt.Errorf("Error getting product from database %v \n", err)
+		return stockProduct, err
+	}
+	return stockProduct, nil
 }

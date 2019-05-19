@@ -33,6 +33,7 @@ func Start() {
 	r.GET("/store/:id/", controllers.GetStore)
 	r.DELETE("/store/:id/", controllers.DeleteStore)
 	r.PUT("/store/:id/", controllers.PutStore)
+	r.GET("/store_stock/:id/", controllers.GetStoreStock)
 
 	r.POST("/user", controllers.InsertUser)
 	r.GET("/user", controllers.GetUserAll)
