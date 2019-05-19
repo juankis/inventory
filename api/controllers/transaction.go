@@ -137,7 +137,22 @@ func convertTransaction(req models.TransactionRequest) (error, *models.Transacti
 	if err != nil {
 		return err, nil
 	}
-	return nil, &models.Transaction{Movement: mov, ProductId: prod, Quantity: quant, UserCreator: &user}
+	storeIDFrom, err := strconv.Atoi(req.StoreIDFrom)
+	if err != nil {
+		return err, nil
+	}
+	storeIDTo, err := strconv.Atoi(req.StoreIDTo)
+	if err != nil {
+		return err, nil
+	}
+	return nil, &models.Transaction{
+		Movement:    mov,
+		ProductId:   prod,
+		Quantity:    quant,
+		UserCreator: &user,
+		StoreIDFrom: storeIDFrom,
+		StoreIDTo:   storeIDTo,
+	}
 }
 
 //GetTransactionsList get all registries

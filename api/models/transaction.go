@@ -11,6 +11,8 @@ type Transaction struct {
 	UserConfirmName *string `json:"user_confirm_name" db:"user_confirm_name"`
 	ProductId       int     `json:"product_id" db:"product_id"`
 	ProductName     *string `json:"product_name" db:"product_name"`
+	StoreIDFrom     int     `json:"store_id_from" db:"store_id_from"`
+	StoreIDTo       int     `json:"store_id_to" db:"store_id_to"`
 	CreatedAt       string  `json:"created_at,omitempty" db:"created_at"`
 	UpdatedAt       string  `json:"updated_at,omitempty" db:"updated_at"`
 }
@@ -46,4 +48,6 @@ type TransactionRequest struct {
 	Movement    string `json:"movement" binding:"required"`
 	UserCreator string `json:"user_creator" binding:"required"`
 	ProductId   string `json:"product_id" binding:"required"`
+	StoreIDFrom string `json:"store_id_from" binding:"required"`
+	StoreIDTo   string `json:"store_id_to" binding:"required"`
 }

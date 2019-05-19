@@ -8,13 +8,18 @@ import (
 
 //InsertTransaction insert
 func InsertTransaction(transaction *models.Transaction) error {
-	res, err := Db.NamedExec(`INSERT INTO transaction (quantity, movement, user_creator, product_id) VALUES (:quantity, :movement, :user_creator, :product_id)`, &transaction)
+	res, err := Db.NamedExec(`INSERT INTO transaction (quantity, movement, user_creator, product_id, store_id_from, store_id_to) VALUES (:quantity, :movement, :user_creator, :product_id, :store_id_from, store_id_to)`, &transaction)
 	if err != nil {
 		fmt.Errorf(fmt.Sprintf("Error inserting transaction to the database, transaction: %v\n", transaction), err, nil)
 		return err
 	}
 	id, _ := res.LastInsertId()
 	transaction.ID = int(id)
+	err = UpdateStock(transaction)
+	if err != nil {
+		fmt.Errorf(fmt.Sprintf("Error updating stock: %v\n", transaction), err, nil)
+		return err
+	}
 	return nil
 }
 
