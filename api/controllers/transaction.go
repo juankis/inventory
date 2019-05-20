@@ -121,10 +121,10 @@ func ConfirmTransaction(c *gin.Context) {
 }
 
 func convertTransaction(req models.TransactionRequest) (error, *models.Transaction) {
-	mov, err := strconv.Atoi(req.Movement)
+	/*mov, err := strconv.Atoi(req.Movement)
 	if err != nil {
 		return err, nil
-	}
+	}*/
 	prod, err := strconv.Atoi(req.ProductId)
 	if err != nil {
 		return err, nil
@@ -146,7 +146,7 @@ func convertTransaction(req models.TransactionRequest) (error, *models.Transacti
 		return err, nil
 	}
 	return nil, &models.Transaction{
-		Movement:    mov,
+		//Movement:    mov,
 		ProductId:   prod,
 		Quantity:    quant,
 		UserCreator: &user,

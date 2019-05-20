@@ -44,8 +44,8 @@ type ConfirmTransaction struct {
 
 //TransactionRequest struct
 type TransactionRequest struct {
-	Quantity    string `json:"quantity" binding:"required"`
-	Movement    string `json:"movement" binding:"required"`
+	Quantity string `json:"quantity" binding:"required"`
+	//Movement    string `json:"movement" binding:"required"`
 	UserCreator string `json:"user_creator" binding:"required"`
 	ProductId   string `json:"product_id" binding:"required"`
 	StoreIDFrom string `json:"store_id_from" binding:"required"`

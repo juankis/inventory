@@ -21,23 +21,24 @@
   </head>
   <body>
     <div class="container">
-            <div id="nav">
-                </div> 
-                
-        <h1>Lista Tiendas <a class='nav-item' href='stores/create'><ion-icon size='large' name="add"></ion-icon></a></h1>
-        <table id="stores" class="table table-striped">
-                <thead>
-                    <tr>
-                    <th scope="col">Nombre</th>
+        <div id="nav">
+        </div>         
+        <h1>Stock</h1>
+        <div class="form-group">
+            <label for="store">Tienda</label>
+            <select id="store_id"  name="store_id" class="form-control stores">
+            </select>
+        </div>
+        <table id="stocks" class="table table-striped">
+            <thead>
+                <tr>
+                    <th scope="col">Producto</th>
                     <th scope="col">Stock</th>
-                    <th scope="col">Editar</th>
-                    <th scope="col">Eliminar</th>
-                    </tr>
-                </thead>
-                <tbody>
-                   
-                </tbody>
-            </table>
+                </tr>
+            </thead>
+            <tbody>     
+            </tbody>
+        </table>
     </div>
 
     <!-- JQuery -->
@@ -58,18 +59,22 @@
     <script src="https://unpkg.com/ionicons@4.5.5/dist/ionicons.js"></script>
     <script src="http://localhost:8080/assets/utiles.js"></script> 
     <script src="http://localhost:8080/assets/nav.js"></script>
+    <script src="http://localhost:8080/assets/stock.js"></script>
     <script src="http://localhost:8080/assets/stores.js"></script>
     <script>
-      $(document).ready(function(){
-          $("#submit_transaction").on('click', function(){
-              createTransaction()
-          });
-          $('#stores').DataTable({
-              "searching": false,
-              "bLengthChange": false
-          });
-        getStores()
-      });
+        $(document).ready(function(){
+            $('#transactions').DataTable({
+                "searching": false,
+                "bLengthChange": false
+                //"paging": false,
+                //"ordering": false
+            });
+            $("#store_id").change(function(){
+              getStock($("#store_id").val())
+            });
+            loadStoresInSelect()
+            getStock(sessionStorage.getItem("store_id"))
+        });
     </script>
   </body>
 </html>

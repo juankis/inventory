@@ -5,9 +5,9 @@ $(document).ready(function(){
 
     $('#transactions').DataTable({
         "searching": false,
-        "bLengthChange": false,
-        "paging": false,
-        "ordering": false
+        "bLengthChange": false
+        //"paging": false,
+        //"ordering": false
     });
    getTransactions()
 });

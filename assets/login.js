@@ -11,6 +11,8 @@ $(document).ready(function(){
             success : function(result) {
                 console.log(result);
                 window.location.href = 'transactions'
+                sessionStorage.setItem("user_id", "1");
+                sessionStorage.setItem("store_id", "1");
             },
             error: function(xhr, resp, text, data) {
                 $("#messages").text("usuario no valido")

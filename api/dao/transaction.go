@@ -8,7 +8,7 @@ import (
 
 //InsertTransaction insert
 func InsertTransaction(transaction *models.Transaction) error {
-	res, err := Db.NamedExec(`INSERT INTO transaction (quantity, movement, user_creator, product_id, store_id_from, store_id_to) VALUES (:quantity, :movement, :user_creator, :product_id, :store_id_from, store_id_to)`, &transaction)
+	res, err := Db.NamedExec(`INSERT INTO transaction (quantity, movement, user_creator, product_id, store_id_from, store_id_to) VALUES (:quantity, 1, :user_creator, :product_id, :store_id_from, store_id_to)`, &transaction)
 	if err != nil {
 		fmt.Errorf(fmt.Sprintf("Error inserting transaction to the database, transaction: %v\n", transaction), err, nil)
 		return err
