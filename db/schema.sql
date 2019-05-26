@@ -35,3 +35,5 @@ CREATE TABLE `inventory`.`stock` (
   `store_id` INT NOT NULL,
   `stock` INT NOT NULL,
   PRIMARY KEY (`id`));  
+
+INSERT INTO `inventory`.`user` (`name`, `user`, `password`) VALUES (`admin`, `admin`, `yatusabes`)

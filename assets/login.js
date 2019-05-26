@@ -12,9 +12,11 @@ function login(){
             data : getFormData($("#login")), // post data || get data
             success : function(result) {
                 console.log(result);
-                sessionStorage.setItem("user_id", "1");
-                sessionStorage.setItem("store_id", "1");
-                window.location.href = 'transactions'
+                if (result.respond_code >= 200 || result.respond_code < 300 ){
+                    sessionStorage.setItem("user_id", "1");
+                    sessionStorage.setItem("store_id", "1");
+                    window.location.href = 'stock'
+                }
             },
             error: function(xhr, resp, text, data) {
                 $("#messages").text("usuario no valido")

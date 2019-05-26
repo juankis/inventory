@@ -1,6 +1,7 @@
 package dao
 
 import (
+	"errors"
 	"fmt"
 
 	"github.com/juankis/inventory/api/models"
@@ -64,15 +65,18 @@ func DeleteUser(user *models.User) error {
 }
 
 //Login insert
-func Login(user *models.LoginRequest) (*models.UserResponse, error) {
+func Login(user models.LoginRequest, userResponse *models.UserResponse) error {
 	//query := fmt.Sprintf("SELECT name FROM `user` where user = '%s' and password = '%s' limit 1", user.User, user.Password)
 	//RowExists(query)
-	userLogin := models.UserResponse{}
-	err := Db.Get(&userLogin, "SELECT id, name, user FROM `user` where user = '%s' and password = '%s' limit 1", user.User, user.Password)
-	fmt.Printf("user: %+v\n", userLogin)
+	fmt.Printf("user login: %+v\n", user)
+	err := Db.Get(userResponse, "SELECT id, name, user FROM user where user = ? and password = ? limit 1", user.User, user.Password)
+	fmt.Printf("user response: %+v\n", userResponse)
 	if err != nil {
 		fmt.Errorf("Error getting user from database %v \n", err)
-		return &userLogin, err
+		return err
 	}
-	return &userLogin, nil
+	if userResponse.ID == 0 {
+		return errors.New("usuario invalido")
+	}
+	return nil
 }

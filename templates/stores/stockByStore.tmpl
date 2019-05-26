@@ -21,9 +21,16 @@
   </head>
   <body>
     <div class="container">
-        <div id="nav">
-        </div>         
-        <h1>Stock</h1>
+        <div id="nav"></div>
+        <div class="btn-toolbar justify-content-between" role="toolbar" aria-label="Toolbar with button groups">
+          <div class="btn-group" role="group" aria-label="First group">
+            <h3>Stock</h3>
+          </div>  
+          <div class="btn-group" role="group" aria-label="First group">
+            <a onclick='logout()' ><ion-icon size='large' name='log-out'></ion-icon></a>
+          </div>
+        </div>        
+                 
         <div class="form-group">
             <label for="store">Tienda</label>
             <select id="store_id"  name="store_id" class="form-control stores">
@@ -63,7 +70,7 @@
     <script src="http://localhost:8080/assets/stores.js"></script>
     <script>
         $(document).ready(function(){
-            $('#transactions').DataTable({
+            $('#stocks').DataTable({
                 "searching": false,
                 "bLengthChange": false
                 //"paging": false,

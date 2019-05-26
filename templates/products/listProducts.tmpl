@@ -18,10 +18,16 @@
   </head>
   <body>
     <div class="container">
-            <div id="nav">
-                </div> 
-                
-        <h1>Lista Productos <a class='nav-item' href='products/create'><ion-icon size='large' name="add"></ion-icon></a></h1>
+      <div id="nav"></div> 
+        <div class="btn-toolbar justify-content-between" role="toolbar" aria-label="Toolbar with button groups">
+          <div class="btn-group" role="group" aria-label="First group">
+            <a class='nav-item' href='products/create'><ion-icon size='large' name="add"></ion-icon></a>
+            <h3>Productos</h3>
+          </div>  
+          <div class="btn-group" role="group" aria-label="First group">
+            <a onclick='logout()' ><ion-icon size='large' name='log-out'></ion-icon></a>
+          </div>
+        </div>        
         <table id="products" class="table table-striped">
                 <thead>
                     <tr>

@@ -1,4 +1,3 @@
-
 function getFormData($form){
     var unindexed_array = $form.serializeArray();
     var indexed_array = {};
@@ -12,5 +11,12 @@ function getFormData($form){
 
 function logout(){
     sessionStorage.clear();
-    window.location.href = 'login'
+    window.location.href = 'http://localhost:8080/login'
+}
+
+function checkLogin(){
+    console.log()
+    if(sessionStorage.getItem("user_id") === null){
+        window.location.href = 'http://localhost:8080/login'
+    }
 }
