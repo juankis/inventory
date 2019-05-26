@@ -21,7 +21,6 @@ function loadStores(stores){
     jQuery.each(stores, function(i, val) {
         l = new Array()
         l.push(val.name)
-        l.push("<a href='http://localhost:8080/store_stock/"+val.id+"' class='btn btn-warning btn-sm btn-block' role='button' aria-pressed='true'>Stock</a>")
         l.push("<button type='submit' class='btn btn-info btn-sm btn-block'>edit</button>")
         l.push("<button type='submit' class='btn btn-danger btn-sm btn-block'>delete</button>")
         lista.push(l)

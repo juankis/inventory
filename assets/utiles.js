@@ -9,3 +9,8 @@ function getFormData($form){
     console.log(indexed_array)
     return JSON.stringify(indexed_array);
 }
+
+function logout(){
+    sessionStorage.clear();
+    window.location.href = 'login'
+}

@@ -12,8 +12,9 @@ type User struct {
 
 //UserResponse struct
 type UserResponse struct {
-	Name string `json:"name"`
-	User string `json:"user"`
+	ID   int    `json:"id" db:"id"`
+	Name string `json:"name" db:"name"`
+	User string `json:"user" db:"user"`
 }
 
 //LoginRequest struct

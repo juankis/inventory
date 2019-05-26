@@ -100,16 +100,15 @@ func GetUser(c *gin.Context) {
 //Login obtener registro
 func Login(c *gin.Context) {
 	var user models.LoginRequest
-
 	err := c.ShouldBindJSON(&user)
 	if err != nil {
 		fmt.Printf("error %v\n", err.Error())
 		utils.InvalidJSON(c, err)
 		return
 	}
-	res := dao.Login(&user)
-	if res {
-		c.JSON(200, gin.H{"message": "todo bien", "respond_code": 200})
+	res, err := dao.Login(&user)
+	if err != nil {
+		c.JSON(200, gin.H{"user": res, "respond_code": 200})
 		return
 	}
 	c.JSON(400, gin.H{"message": "usuario invalido", "respond_code": 400})

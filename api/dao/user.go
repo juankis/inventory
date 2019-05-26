@@ -21,7 +21,7 @@ func InsertUser(user *models.User) error {
 //GetUserAll Returns error and user if exist
 func GetUserAll() ([]models.UserResponse, error) {
 	var user []models.UserResponse
-	err := Db.Select(&user, "SELECT name, user FROM `user` ORDER BY id ASC")
+	err := Db.Select(&user, "SELECT id, name, user FROM `user` ORDER BY id ASC")
 	if err != nil {
 		fmt.Errorf("Error getting user from database %v \n", err)
 		return user, err
@@ -64,7 +64,15 @@ func DeleteUser(user *models.User) error {
 }
 
 //Login insert
-func Login(user *models.LoginRequest) bool {
-	query := fmt.Sprintf("SELECT name FROM `user` where user = '%s' and password = '%s' limit 1", user.User, user.Password)
-	return RowExists(query)
+func Login(user *models.LoginRequest) (*models.UserResponse, error) {
+	//query := fmt.Sprintf("SELECT name FROM `user` where user = '%s' and password = '%s' limit 1", user.User, user.Password)
+	//RowExists(query)
+	userLogin := models.UserResponse{}
+	err := Db.Get(&userLogin, "SELECT id, name, user FROM `user` where user = '%s' and password = '%s' limit 1", user.User, user.Password)
+	fmt.Printf("user: %+v\n", userLogin)
+	if err != nil {
+		fmt.Errorf("Error getting user from database %v \n", err)
+		return &userLogin, err
+	}
+	return &userLogin, nil
 }

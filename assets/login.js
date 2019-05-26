@@ -1,6 +1,8 @@
-
-
 $(document).ready(function(){
+    login()
+});
+
+function login(){
     $("#submit").on('click', function(){
         $.ajax({
             url: 'login', // url where to submit the request
@@ -10,9 +12,9 @@ $(document).ready(function(){
             data : getFormData($("#login")), // post data || get data
             success : function(result) {
                 console.log(result);
-                window.location.href = 'transactions'
                 sessionStorage.setItem("user_id", "1");
                 sessionStorage.setItem("store_id", "1");
+                window.location.href = 'transactions'
             },
             error: function(xhr, resp, text, data) {
                 $("#messages").text("usuario no valido")
@@ -20,4 +22,4 @@ $(document).ready(function(){
             }
         })
     });
-});
+}
