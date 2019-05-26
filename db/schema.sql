@@ -8,7 +8,7 @@ CREATE TABLE `inventory`.`transaction` (
   `store_id_from` INT NOT NULL,
   `store_id_to` INT NOT NULL,
   `created_at` TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP,
-  `updated_at` TIMESTAMP NULL DEFAULT,
+  `updated_at` TIMESTAMP NULL,
   PRIMARY KEY (`id`));
 
 CREATE TABLE `inventory`.`product` (
@@ -36,4 +36,4 @@ CREATE TABLE `inventory`.`stock` (
   `stock` INT NOT NULL,
   PRIMARY KEY (`id`));  
 
-INSERT INTO `inventory`.`user` (`name`, `user`, `password`) VALUES (`admin`, `admin`, `yatusabes`)
+INSERT INTO `inventory`.`user` (`name`, `user`, `password`) VALUES ('admin', 'admin', 'yatusabes')
