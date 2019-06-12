@@ -8,7 +8,7 @@ $(document).ready(function(){
 
 function getUsers(){
     $.ajax({
-        url: 'http://localhost:8081/user',
+        url: 'http://3.215.116.162:8081/user',
         contentType: "application/json",
         type : "GET",
         dataType : 'json',

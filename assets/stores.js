@@ -1,6 +1,6 @@
 function getStores(){
     $.ajax({
-        url: 'http://localhost:8081/store',
+        url: 'http://3.215.116.162:8081/store',
         contentType: "application/json",
         type : "GET",
         dataType : 'json',

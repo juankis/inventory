@@ -8,7 +8,7 @@ $(document).ready(function(){
 
 function getProducts(){
     $.ajax({
-        url: 'http://localhost:8081/product',
+        url: 'http://3.215.116.162:8081/product',
         contentType: "application/json",
         type : "GET",
         dataType : 'json',

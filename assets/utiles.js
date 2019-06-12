@@ -11,19 +11,19 @@ function getFormData($form){
 
 function logout(){
     sessionStorage.clear();
-    window.location.href = 'http://localhost:8081/login'
+    window.location.href = 'http://3.215.116.162:8081/login'
 }
 
 function checkLogin(){
     console.log()
     if(sessionStorage.getItem("user_id") === null){
-        window.location.href = 'http://localhost:8081/login'
+        window.location.href = 'http://3.215.116.162:8081/login'
     }
 }
 
 function loadInSelect(idSelect, elements){
     $.ajax({
-        url: 'http://localhost:8081/'+elements,
+        url: 'http://3.215.116.162:8081/'+elements,
         contentType: "application/json",
         type : "GET",
         dataType : 'json',
