@@ -80,5 +80,5 @@ func Start() {
 	r.GET("/stock", func(c *gin.Context) {
 		c.HTML(http.StatusOK, "stockByStore.tmpl", nil)
 	})
-	r.Run(":8080") // listen and serve on 0.0.0.0:8080
+	r.Run(":8081")
 }

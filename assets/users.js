@@ -8,7 +8,7 @@ $(document).ready(function(){
 
 function getUsers(){
     $.ajax({
-        url: 'http://localhost:8080/user',
+        url: 'http://localhost:8081/user',
         contentType: "application/json",
         type : "GET",
         dataType : 'json',
@@ -28,8 +28,8 @@ function loadUsers(users){
     datatable.clear()
     jQuery.each(users, function(i, val) {
         l = Object.values(val)
-        l.push("<button type='submit' class='btn btn-info btn-sm btn-block'>edit</button>")
-        l.push("<button type='submit' class='btn btn-danger btn-sm btn-block'>delete</button>")
+        //l.push("<button type='submit' class='btn btn-info btn-sm btn-block'>edit</button>")
+        //l.push("<button type='submit' class='btn btn-danger btn-sm btn-block'>delete</button>")
         lista.push(l)
         console.log(lista)
     });

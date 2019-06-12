@@ -1,7 +1,7 @@
 function getStock(storeID){
     console.log("storeID:",storeID)
     $.ajax({
-        url: 'http://localhost:8080/store_stock/'+storeID,
+        url: 'http://localhost:8081/store_stock/'+storeID,
         contentType: "application/json",
         type : "GET",
         dataType : 'json',

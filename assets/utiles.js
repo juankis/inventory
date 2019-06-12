@@ -11,12 +11,30 @@ function getFormData($form){
 
 function logout(){
     sessionStorage.clear();
-    window.location.href = 'http://localhost:8080/login'
+    window.location.href = 'http://localhost:8081/login'
 }
 
 function checkLogin(){
     console.log()
     if(sessionStorage.getItem("user_id") === null){
-        window.location.href = 'http://localhost:8080/login'
+        window.location.href = 'http://localhost:8081/login'
     }
+}
+
+function loadInSelect(idSelect, elements){
+    $.ajax({
+        url: 'http://localhost:8081/'+elements,
+        contentType: "application/json",
+        type : "GET",
+        dataType : 'json',
+        success : function(result) {
+            console.log(result)
+            jQuery.each(result, function(i, val) {
+            $(idSelect).append(new Option(val.name, val.id));
+            })
+        },
+        error: function(xhr, resp, text, data) {
+            console.log(xhr, resp, text);
+        }
+    })
 }
