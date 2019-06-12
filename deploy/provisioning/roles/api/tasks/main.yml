@@ -1,0 +1,32 @@
+- name: create folders
+  file:
+    path: /home/ubuntu/go/src/github.com/juankis/inventory
+    state: directory
+    mode: 0777
+
+- name: Install systemd script
+  become: true
+  copy:
+    src=api.service
+    dest=/lib/systemd/system
+
+- name: install driver mysql
+  shell: "/usr/local/go/bin/go get github.com/go-sql-driver/mysql"
+  
+- name: install connector mysql
+  shell: "/usr/local/go/bin/go get github.com/jmoiron/sqlx"
+  
+- name: install gin
+  shell: "/usr/local/go/bin/go get github.com/gin-gonic/gin"
+  
+- name: git clone inventory
+  git:
+    repo: 'https://github.com/juankis/inventory'
+    dest: /home/ubuntu/go/src/github.com/juankis/inventory
+    clone: yes
+    update: yes
+
+- name: go run 
+  shell: "(cd /; /usr/local/go/bin/go run /home/ubuntu/go/src/github.com/juankis/inventory/api/main/main.go >/dev/null 2>&1 &)"
+  async: 10
+  poll: 0  

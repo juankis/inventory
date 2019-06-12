@@ -1,0 +1,9 @@
+---
+- hosts: all
+  vars:
+    ansible_python_interpreter: "/usr/bin/env python3"
+  roles:
+    - update
+    - andrewrothstein.go
+    - api
+    
