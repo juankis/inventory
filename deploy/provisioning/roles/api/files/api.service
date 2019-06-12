@@ -4,14 +4,14 @@ After=network.target
 
 [Service]
 Environment=ENVIRONMENT=production
-Environment=DB_INVENTORY_HOST=inventory.cjdmlyuutrqv.us-east-1.rds.amazonaws.com
-Environment=DB_INVENTORY_PORT=3306
-Environment=DB_INVENTORY_PASSWORD=mysql123
-Environment=DB_INVENTORY_USER=root
+Environment=DB_INVENTORY_HOST=
+Environment=DB_INVENTORY_PORT=
+Environment=DB_INVENTORY_PASSWORD=
+Environment=DB_INVENTORY_USER=
 Environment=API_INVENTORY_HOST=http://localhost
 Environment=API_INVENTORY_PORT=8080
 Type=simple
-User=root
+User=
 WorkingDirectory=/usr/local/go
 
 [Install]
